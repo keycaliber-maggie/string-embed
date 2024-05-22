@@ -110,6 +110,20 @@ class DataHandler:
             w.writelines("%s\n" % self.lines[i] for i in self.train_ids)
         with open(root_dir + "base", "w") as w:
             w.writelines("%s\n" % self.lines[i] for i in self.base_ids)
+    
+    def save_alphabet(self):
+        root_dir = "folder/{}_{}/{}/".format(
+            self.dataset, self.args.maxl, self.args.shuffle_seed
+        )
+        with open(root_dir + 'alphabet.txt', 'w') as w:
+            w.write(self.alphabet)
+    
+    def save_max_size(self):
+        root_dir = "folder/{}_{}/{}/".format(
+            self.dataset, self.args.maxl, self.args.shuffle_seed
+        )
+        with open(root_dir + 'max_size.txt', 'w') as w:
+            w.write(str(self.M))
 
     def generate_ids(self):
         np.random.seed(self.args.shuffle_seed)
@@ -255,6 +269,8 @@ def get_args():
     h.set_nb(args.nb)
     if args.save_split:
         h.save_split()
+        h.save_alphabet()
+        h.save_max_size()
     if args.random_append_train:
         h.random_trains(replace=False)
     elif args.random_train:

@@ -15,6 +15,8 @@ def train_epoch(args, train_set, device):
     )
     if args.dataset == "word":
         EmbeddingNet = TwoLayerCNN
+    if args.dataset == "hostname":
+        EmbeddingNet == TwoLayerCNN
     elif args.dataset == "querylog":
         EmbeddingNet = QuerylogCNN
     elif args.dataset == "enron":

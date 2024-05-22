@@ -45,7 +45,16 @@ def readlines(file):
     lines = open(file, "rb").read().splitlines()
     return [line.decode("utf8", "ignore") for line in lines]
 
-
+# returns:
+# all_chars['counter']: number of characters in the alphabet
+#
+# max_length: length of longest string in the dataset (or max_length param passed in) 
+#
+# x: array of arrays. Each array represents a string. Characters are replaced by the index of the character in 
+# the alphabet, which is built up in the order that characters are encountered in the dataset.  So for instance the string
+# "brrapid703" could be represented as [12, 1, 1, 4, 20, 14, 2, 33, 8, 0]. 
+#
+# alphabet: all characters in the string dataset, in the order they are encountered.
 def word2sig(lines, max_length=None):
     """
     :param file: the path to the file
